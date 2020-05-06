@@ -11,12 +11,12 @@ function findById(id) {
 }
 
 // call API for all cocktails to recuperate random cocktail ID
-async function fetchCocktails() {
-  const response = await fetch('https://fancy-cocktails2.herokuapp.com/api/v1/cocktails');
-  const data = await response.json();
-  // console.log(data);
-  return data;
-}
+// async function fetchCocktails() {
+//   const response = await fetch('https://fancy-cocktails2.herokuapp.com/api/v1/cocktails');
+//   const data = await response.json();
+//   // console.log(data);
+//   return data;
+// }
 
 // function getcocktailId() {
 //   const resultsArray = fetchCocktails();
@@ -28,23 +28,23 @@ async function fetchCocktails() {
 // }
 // getcocktailId();
 
-// async function fetchCocktails() {
-//   const response = await fetch('https://fancy-cocktails2.herokuapp.com/api/v1/cocktails')
-//     .then(response => response.json())
-//     .then(data => {
-//       const resultsArray = data;
-//       // recup ID des cocktails
-//       const idArray = resultsArray.map(element => element.id);
-//       // prendre une id random
-//       const randomItem = idArray[Math.floor(Math.random() * idArray.length)];
-//       console.log(randomItem);
-//       return randomItem;
-//       // recuperate the good cocktail
-//       // const cocktailToDisplay = resultsArray.find(findById(randomItem));
-//       // console.log(cocktailToDisplay);
-//       // return cocktailToDisplay;
-//     });
-// }
+function fetchCocktails() {
+  fetch('https://fancy-cocktails2.herokuapp.com/api/v1/cocktails')
+    .then(response => response.json())
+    .then(data => {
+      const resultsArray = data;
+      // recup ID des cocktails
+      const idArray = resultsArray.map(element => element.id);
+      // prendre une id random
+      const randomItem = idArray[Math.floor(Math.random() * idArray.length)];
+      console.log(randomItem);
+      return randomItem;
+      // recuperate the good cocktail
+      // const cocktailToDisplay = resultsArray.find(findById(randomItem));
+      // console.log(cocktailToDisplay);
+      // return cocktailToDisplay;
+    });
+}
 
 // re-call APi for specific cocktail
 // fetch(`https://fancy-cocktails2.herokuapp.com/api/v1/cocktails/33`)
