@@ -1,9 +1,9 @@
 {
-  "name": "xxx",
+  "name": "fancy-cocktail",
   "version": "1",
-  "description": "xxx",
+  "description": "Get a fancy cocktail recipe on new tab",
   "main": "index.js",
-  "repository": "xxxx",
+  "repository": "https://github.com/Xelaflash/fancyCocktail-addOn",
   "author": "Xela",
   "license": "UNLICENSED",
   "private": false,

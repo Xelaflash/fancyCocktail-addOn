@@ -1,16 +1,14 @@
 {
-  "name": "To change",
+  "name": "Fancy cocktail",
   "version": "1.0",
-  "description": "template for add-on (to change)",
+  "description": "Get a fancy cocktail recipe on new tab",
   "manifest_version": 1,
   "chrome_url_overrides": {
     "newtab": "index.html"
   },
-  "content_scripts": [
-    {
-      "matches": ["http://*/*", "https://*/*"],
-      "js": ["dist/bundle.js"],
-      "run_at": "document_start"
-    }
-  ]
+  "content_scripts": [{
+    "matches": ["http://*/*", "https://*/*"],
+    "js": ["dist/bundle.js"],
+    "run_at": "document_start"
+  }]
 }
