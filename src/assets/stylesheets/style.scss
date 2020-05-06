@@ -1,0 +1,45 @@
+@import "config";
+
+body {
+  margin: 0;
+  font-family: $body-font;
+  color: $charcoal;
+  background-color: $bg;
+  background-image: url('https://res.cloudinary.com/dcf4y5ngp/image/upload/v1588606893/brick-wall.png');
+}
+
+.show-page {
+  min-height: calc(100vh - 140px);
+}
+
+.sep {
+  height: 3px;
+  background: $red;
+  width: 90px;
+  margin: 0 auto;
+}
+
+.cocktail-show-banner {
+  background: $charcoal;
+  color: white;
+  text-align: center;
+  padding: 20px;
+
+  h2 {
+    font-family: $header-font;
+    font-size: 26px;
+    letter-spacing: 0.1em;
+    color: $red;
+    text-shadow: rgba(0, 0, 0, 0.6) 4px 4px 8px,
+      rgba(46, 64, 87, 1) -4px -4px 8px;
+  }
+
+  h1 {
+    font-family: $body-font;
+    font-size: 44px;
+    margin-top: 40px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-shadow: rgba(0, 0, 0, 1) 4px 4px 8px, rgba(46, 64, 87, 1) -4px -4px 8px;
+  }
+}

@@ -1,0 +1,21 @@
+// Import Google fonts
+@import url("https://fonts.googleapis.com/css?family=Raleway:400,100,300,700,500");
+@import url('https://fonts.googleapis.com/css?family=Shadows+Into+Light');
+
+$main-title-font: 'Shadows Into Light',
+'cursive';
+$body-font: 'Raleway',
+'sans-serif';
+$header-font: 'barrel';
+
+@font-face {
+  font-family: 'barrel';
+  src: url('/src/assets/fonts/barrel.ttf') format('ttf') format('truetype');
+}
+
+$red: #CC163F;
+$green: #32B796;
+$charcoal: #2e4057;
+$light-gray: #F4F4F4;
+$bg: #fcf2e3;
+$white: #ffffff;

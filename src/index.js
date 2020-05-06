@@ -1,4 +1,7 @@
-import './stylesheets/style.scss';
+import './assets/stylesheets/style.scss';
+import barrel from './assets/fonts/barrel.ttf';
+
+const cocktailName = document.querySelector('.cocktail-name');
 
 function findById(id) {
   return function(singleCocktail) {
@@ -18,4 +21,6 @@ fetch('https://fancy-cocktails2.herokuapp.com/api/v1/cocktails')
     // recuperate the good cocktail
     const cocktailToDisplay = resultsArray.find(findById(randomItem));
     console.log(cocktailToDisplay);
+    // display cocktail title
+    cocktailName.textContent = cocktailToDisplay.name;
   });
