@@ -15,7 +15,6 @@ function handleError(err) {
   demo.textContent = `Something went wrong: ${err}`;
 }
 
-// must return me a cocktail ID
 async function getCocktailId() {
   const response = await fetch(`${baseEndpoint}`);
   const data = await response.json();
@@ -37,17 +36,14 @@ function displayRecipe(step, index) {
 // call API cocktail SHOW
 async function fetchCocktail() {
   // demo.textContent = 'loading...';
-  const id = await getCocktailId(); // this will grab you the return value from getCocktailId function;
+  const id = await getCocktailId();
   const response = await fetch(`${baseEndpoint}/${id}`);
   const data = await response.json();
-  // display name
   cocktailName.textContent = data.name;
-  // display picture
   const photo = `
-  <img src="${baseEndpoint}/${id}/photo" width="400" alt="Cocktail picture">
+  <img src="${baseEndpoint}/${id}/photo" width="350" alt="Cocktail picture">
   `;
   pictureDiv.insertAdjacentHTML('beforeend', photo);
-  // display doses
   data.doses.forEach(ingredient => {
     const dose = `
     <p class="step">
@@ -56,7 +52,6 @@ async function fetchCocktail() {
     `;
     ingredientsDiv.insertAdjacentHTML('beforeend', dose);
   });
-  // display recipe
   const recipeStr = data.recipe;
   const recipeArray = recipeStr
     .replace(/[\n\r]+/g, '')
@@ -65,5 +60,4 @@ async function fetchCocktail() {
   recipeArray.map(step => step.trim());
   recipeArray.forEach(displayRecipe);
 }
-
 fetchCocktail().catch(handleError);
