@@ -1,8 +1,10 @@
 import './assets/stylesheets/style.scss';
 
 // const loader = document.querySelector('.loader');
-// const cocktailName = document.querySelector('.cocktail-name');
-// const picture = document.querySelector('.cocktail-picture');
+const cocktailName = document.querySelector('.cocktail-name');
+const pictureDiv = document.querySelector('.cocktail-picture');
+const ingredientsDiv = document.querySelector('#ingredients-content');
+const recipeDiv = document.querySelector('#recipe-content');
 
 const demo = document.querySelector('#demo');
 const baseEndpoint = 'https://fancy-cocktails2.herokuapp.com/api/v1/cocktails';
@@ -22,13 +24,46 @@ async function getCocktailId() {
   return randomItem;
 }
 
+function displayRecipe(step, index) {
+  const recipe = `
+  <p class="step">
+  <span class="step-nbr">0${index + 1}</span>
+  <span class="step-item">${step}</span>
+</p>
+  `;
+  recipeDiv.insertAdjacentHTML('beforeend', recipe);
+}
+
 // call API cocktail SHOW
-async function displayCocktail() {
-  demo.textContent = 'loading...';
+async function fetchCocktail() {
+  // demo.textContent = 'loading...';
   const id = await getCocktailId(); // this will grab you the return value from getCocktailId function;
   const response = await fetch(`${baseEndpoint}/${id}`);
   const data = await response.json();
-  console.log(data);
+  // display name
+  cocktailName.textContent = data.name;
+  // display picture
+  const photo = `
+  <img src="${baseEndpoint}/${id}/photo" width="400" alt="Cocktail picture">
+  `;
+  pictureDiv.insertAdjacentHTML('beforeend', photo);
+  // display doses
+  data.doses.forEach(ingredient => {
+    const dose = `
+    <p class="step">
+    <span class="dose-nbr">${ingredient.description}</span>
+    <span class="dose-item">${ingredient.ingredient.name}</span>
+    `;
+    ingredientsDiv.insertAdjacentHTML('beforeend', dose);
+  });
+  // display recipe
+  const recipeStr = data.recipe;
+  const recipeArray = recipeStr
+    .replace(/[\n\r]+/g, '')
+    .replace(/\s{2,10}/g, ' ')
+    .split('.');
+  recipeArray.map(step => step.trim());
+  recipeArray.forEach(displayRecipe);
 }
 
-displayCocktail().catch(handleError);
+fetchCocktail().catch(handleError);
