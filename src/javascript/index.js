@@ -1,18 +1,16 @@
-import './assets/stylesheets/style.scss';
+import '../assets/stylesheets/style.scss';
+import './loader';
 
 // const loader = document.querySelector('.loader');
 const cocktailName = document.querySelector('.cocktail-name');
 const pictureDiv = document.querySelector('.cocktail-picture');
 const ingredientsDiv = document.querySelector('#ingredients-content');
 const recipeDiv = document.querySelector('#recipe-content');
-
-const demo = document.querySelector('#demo');
+const loader = document.querySelector('.loader');
 const baseEndpoint = 'https://fancy-cocktails2.herokuapp.com/api/v1/cocktails';
 
 function handleError(err) {
-  console.log('OH NO!');
-  console.log(err);
-  demo.textContent = `Something went wrong: ${err}`;
+  alert(` Sorry 🤷🏻‍♂️ Something went wrong: ${err}`);
 }
 
 async function getCocktailId() {
@@ -35,7 +33,9 @@ function displayRecipe(step, index) {
 
 // call API cocktail SHOW
 async function fetchCocktail() {
-  // demo.textContent = 'loading...';
+  // turn loading anim on
+  loader.classList.remove('hidden');
+
   const id = await getCocktailId();
   const response = await fetch(`${baseEndpoint}/${id}`);
   const data = await response.json();
@@ -59,5 +59,9 @@ async function fetchCocktail() {
     .split('.');
   recipeArray.map(step => step.trim());
   recipeArray.forEach(displayRecipe);
+  // turn the loading anim off
+  setTimeout(() => {
+    loader.classList.add('hidden');
+  }, 2500);
 }
 fetchCocktail().catch(handleError);

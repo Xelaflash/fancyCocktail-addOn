@@ -1,4 +1,5 @@
 @import "config";
+@import "components/index";
 
 body {
   margin: 0;
@@ -144,7 +145,7 @@ body {
   #recipe-card {
     grid-row: 4 / span 4;
     grid-column: 2 / span 2;
-    z-index: 3;
+    z-index: 2;
   }
 }
 
