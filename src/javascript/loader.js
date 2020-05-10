@@ -21,7 +21,7 @@ function startLoading() {
   $('#lemon').hide();
   $('#straw').hide();
   $('#cubes div').hide();
-  worker = setInterval(increment, 20);
+  worker = setInterval(increment, 10);
 }
 function stopLoading() {
   clearInterval(worker);

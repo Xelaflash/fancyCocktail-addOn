@@ -35,7 +35,6 @@ function displayRecipe(step, index) {
 async function fetchCocktail() {
   // turn loading anim on
   loader.classList.remove('hidden');
-
   const id = await getCocktailId();
   const response = await fetch(`${baseEndpoint}/${id}`);
   const data = await response.json();
@@ -62,6 +61,17 @@ async function fetchCocktail() {
   // turn the loading anim off
   setTimeout(() => {
     loader.classList.add('hidden');
-  }, 2500);
+  }, 1200);
 }
 fetchCocktail().catch(handleError);
+
+const refreshBtn = document.querySelector('.refresh');
+refreshBtn.addEventListener('click', function() {
+  refreshBtn.classList.add('rotate-center');
+  setTimeout(() => {
+    window.location.reload(true);
+  }, 600);
+});
+refreshBtn.addEventListener('animationend', function() {
+  refreshBtn.classList.remove('rotate-center');
+});
