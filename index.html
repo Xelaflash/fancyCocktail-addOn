@@ -28,8 +28,8 @@
           <span id="counter"></span>
         </div>
       </div>
-      <div class="loader-text">
-        <h4>Bartender is pouring your cocktail</h4>
+      <div class="loader-text-wrapper">
+        <h4 id="anim-text">Bartender is pouring your cocktail</h4>
       </div>
     </div>
     <div class="show-page">
@@ -102,7 +102,7 @@
       aria-labelledby="Rate the cocktail"
       aria-hidden="true"
     >
-      <div class="modal-dialog" role="document">
+      <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content container">
           <div class="modal-header">
             <h5 class="modal-title" id="modal-title">Enjoy this cocktail?</h5>
@@ -115,10 +115,21 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
+          <div class="modal-body" id="modal-content">
             <div class="row">
               <div class="col-xs-4 text-center">
-                <!-- put form here -->
+                <form action="POST" class="review_form">
+                  <label for="review_rating" id="modal-label"
+                    >Let's Rate it</label
+                  >
+                  <select id="review_rating" name="review_rating">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+                </form>
               </div>
             </div>
           </div>

@@ -129,10 +129,7 @@
   transform-origin: center bottom;
 }
 
-.loader-text {
-  color: white;
-  font-family: "Shadows Into Light", "cursive";
-  font-size: 36px;
+.loader-text-wrapper {
   position: absolute;
   top: 75%;
   left: 50%;
@@ -140,6 +137,12 @@
   text-shadow: rgba(0, 0, 0, 0.6) 4px 4px 8px, #2e4057 -4px -4px 8px;
   width: 90%;
   text-align: center;
+
+  #anim-text {
+    color: white;
+    font-family: "Shadows Into Light", "cursive";
+    font-size: 36px;
+  }
 }
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {

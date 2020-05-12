@@ -3,6 +3,7 @@ const pictureDiv = document.querySelector('.cocktail-picture');
 const ingredientsDiv = document.querySelector('#ingredients-content');
 const recipeDiv = document.querySelector('#recipe-content');
 const loader = document.querySelector('.loader');
+const starsDiv = document.querySelector('.stars-wrapper');
 const baseEndpoint = 'https://fancy-cocktails2.herokuapp.com/api/v1/cocktails';
 
 function handleError(err) {
@@ -54,10 +55,17 @@ async function fetchCocktail() {
     .split('.');
   recipeArray.map(step => step.trim());
   recipeArray.forEach(displayRecipe);
+
+  // reviews
+  const reviewsArr = data.reviews;
+  console.log(reviewsArr);
+
   // turn the loading anim off
   setTimeout(() => {
     loader.classList.add('hidden');
   }, 1200);
 }
 
-export { fetchCocktail, handleError };
+function displayReview() {}
+
+export { fetchCocktail, handleError, displayReview };

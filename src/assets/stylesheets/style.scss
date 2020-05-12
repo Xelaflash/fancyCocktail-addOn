@@ -1,7 +1,8 @@
 @import "config";
 @import "components/index";
-@import "jquery-bar-rating/dist/themes/css-stars";
-@import "bootstrap/scss/bootstrap.scss";
+@import 'vendor';
+
+
 
 body {
   margin: 0;
@@ -85,14 +86,12 @@ body {
 .card-sep {
   --link-color: 46, 64, 87;
   height: 3px;
-  background-image: linear-gradient(
-    to right,
-    transparent 0%,
-    rgba(var(--link-color), 0.6) 30%,
-    rgba(var(--link-color), 0.7) 50%,
-    rgba(var(--link-color), 0.6) 70%,
-    transparent 100%
-  );
+  background-image: linear-gradient(to right,
+      transparent 0%,
+      rgba(var(--link-color), 0.6) 30%,
+      rgba(var(--link-color), 0.7) 50%,
+      rgba(var(--link-color), 0.6) 70%,
+      transparent 100%);
 }
 
 .cocktail-card-content {

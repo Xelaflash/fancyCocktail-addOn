@@ -33,7 +33,7 @@
 
 .star-colored:after {
   content: "\2605";
-  color: #EDB867;
+  color: #edb867;
 }
 
 .star-blank:after {
@@ -62,7 +62,7 @@
   font-weight: 400;
   opacity: 0.8;
   transition: opacity 0.3s ease;
-  background: transparent
+  background: transparent;
 }
 
 .btn-ghost:hover {
@@ -71,8 +71,8 @@
   color: $charcoal;
 }
 
-.modal-body {
-  margin: auto;
+#modal-content {
+  margin: 20px auto;
 }
 
 #modal-title {
@@ -81,19 +81,20 @@
   margin: 10px 0;
 }
 
-.review-rating {
+#review-rating {
   text-align: center;
+}
 
-  label {
-    margin-left: -5px;
-  }
+#modal-label {
+  font-size: 20px;
+  margin-left: -5px;
 }
 
 .br-theme-css-stars .br-widget a {
-  text-decoration: none;
-  height: 22px;
-  width: 22px;
-  float: left;
-  font-size: 30px;
-  margin-right: 14px;
+  text-decoration: none !important;
+  height: 22px !important;
+  width: 22px !important;
+  float: left !important;
+  font-size: 30px !important;
+  margin-right: 14px !important;
 }
