@@ -1,12 +1,14 @@
 @import "config";
 @import "components/index";
+@import "jquery-bar-rating/dist/themes/css-stars";
+@import "bootstrap/scss/bootstrap.scss";
 
 body {
   margin: 0;
   font-family: $body-font;
   color: $charcoal;
   background-color: $bg;
-  background-image: url('https://res.cloudinary.com/dcf4y5ngp/image/upload/v1588606893/brick-wall.png');
+  background-image: url("https://res.cloudinary.com/dcf4y5ngp/image/upload/v1588606893/brick-wall.png");
 }
 
 .sep {
@@ -52,7 +54,8 @@ body {
 
 .cocktail-picture img {
   border-radius: 3px;
-  box-shadow: 0 19px 38px rgba(46, 64, 87, 0.3), 0 15px 12px rgba(46, 64, 87, 0.22);
+  box-shadow: 0 19px 38px rgba(46, 64, 87, 0.3),
+    0 15px 12px rgba(46, 64, 87, 0.22);
 }
 
 #ingredients-card,
@@ -62,12 +65,13 @@ body {
 
 .cocktail-description-card {
   background: $white;
-  box-shadow: 12px 12px 16px 0 rgba(46, 64, 87, 0.4), -8px -8px 12px 0 rgba(255, 255, 255, 0.3);
+  box-shadow: 12px 12px 16px 0 rgba(46, 64, 87, 0.4),
+    -8px -8px 12px 0 rgba(255, 255, 255, 0.3);
   padding: 20px;
   min-height: 200px;
   margin: 20px;
   border-radius: 3px;
-  transition: transform .3s linear;
+  transition: transform 0.3s linear;
 
   h2 {
     font-size: 22px;
@@ -81,12 +85,14 @@ body {
 .card-sep {
   --link-color: 46, 64, 87;
   height: 3px;
-  background-image: linear-gradient(to right,
-      transparent 0%,
-      rgba(var(--link-color), 0.6) 30%,
-      rgba(var(--link-color), 0.7) 50%,
-      rgba(var(--link-color), 0.6) 70%,
-      transparent 100%);
+  background-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(var(--link-color), 0.6) 30%,
+    rgba(var(--link-color), 0.7) 50%,
+    rgba(var(--link-color), 0.6) 70%,
+    transparent 100%
+  );
 }
 
 .cocktail-card-content {
@@ -109,7 +115,7 @@ body {
 }
 
 .dose-nbr {
-  color: #CC163F;
+  color: #cc163f;
   letter-spacing: 0.02em;
   font-weight: 500;
   float: left;
@@ -128,7 +134,7 @@ body {
   .cocktail-section {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-around;
     margin-top: -20px;
   }
 

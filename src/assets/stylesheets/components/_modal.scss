@@ -1,0 +1,99 @@
+.rating-section {
+  width: fit-content;
+  margin: 20px auto;
+
+  #rating-title {
+    font-size: 2rem;
+    font-family: $main-title-font;
+    text-align: center;
+  }
+}
+
+.cocktail-rating {
+  display: flex;
+  align-items: center;
+  margin: auto;
+  width: fit-content;
+}
+
+.stars-wrapper {
+  p {
+    margin: 1rem;
+  }
+}
+
+.stars {
+  text-decoration: none;
+  height: 32px;
+  width: 32px;
+  float: left;
+  font-size: 32px;
+  margin-right: 3px;
+}
+
+.star-colored:after {
+  content: "\2605";
+  color: #EDB867;
+}
+
+.star-blank:after {
+  content: "\2605";
+  color: #d2d2d2;
+}
+
+#rating-txt {
+  margin-top: 20px;
+  padding-left: 15px;
+  font-size: 18px;
+}
+
+.rate-btn {
+  text-align: center;
+  margin: 30px auto;
+}
+
+.btn-ghost {
+  color: $charcoal;
+  border: 1px solid $charcoal;
+  font-family: $body-font;
+  font-size: 16px;
+  padding: 10px 25px;
+  border-radius: 50px;
+  font-weight: 400;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+  background: transparent
+}
+
+.btn-ghost:hover {
+  opacity: 1;
+  text-decoration: none;
+  color: $charcoal;
+}
+
+.modal-body {
+  margin: auto;
+}
+
+#modal-title {
+  font-family: $main-title-font;
+  font-size: 2rem;
+  margin: 10px 0;
+}
+
+.review-rating {
+  text-align: center;
+
+  label {
+    margin-left: -5px;
+  }
+}
+
+.br-theme-css-stars .br-widget a {
+  text-decoration: none;
+  height: 22px;
+  width: 22px;
+  float: left;
+  font-size: 30px;
+  margin-right: 14px;
+}
