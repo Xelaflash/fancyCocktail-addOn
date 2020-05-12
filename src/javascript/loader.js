@@ -27,4 +27,4 @@ function stopLoading() {
   clearInterval(worker);
 }
 
-startLoading();
+export { startLoading };

@@ -35,7 +35,7 @@ body {
   h1 {
     font-family: $body-font;
     font-size: 44px;
-    margin: 20px 0;
+    margin: 20px 0 0;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     text-shadow: rgba(0, 0, 0, 1) 4px 4px 8px, rgba(46, 64, 87, 1) -4px -4px 8px;
@@ -124,6 +124,10 @@ body {
   font-weight: 400;
 }
 
+.cocktail-section {
+  margin-top: -20px;
+}
+
 @media screen and (min-width: 1360px) {
   .cocktail-section {
     display: flex;
@@ -191,4 +195,11 @@ body {
   .cocktail-description-card {
     padding: 40px 20px;
   }
+}
+
+// fix FOUC
+html {
+  visibility: visible;
+  background: linear-gradient(steelblue, beige);
+  opacity: 1;
 }

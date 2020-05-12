@@ -1,5 +1,5 @@
 import '../assets/stylesheets/style.scss';
-import './loader';
+import { startLoading } from './loader';
 
 // const loader = document.querySelector('.loader');
 const cocktailName = document.querySelector('.cocktail-name');
@@ -10,7 +10,7 @@ const loader = document.querySelector('.loader');
 const baseEndpoint = 'https://fancy-cocktails2.herokuapp.com/api/v1/cocktails';
 
 function handleError(err) {
-  alert(` Sorry 🤷🏻‍♂️ Something went wrong: ${err}`);
+  alert(` Sorry 🤷🏻‍♂️ Something went wrong`);
 }
 
 async function getCocktailId() {
@@ -63,6 +63,7 @@ async function fetchCocktail() {
     loader.classList.add('hidden');
   }, 1200);
 }
+startLoading();
 fetchCocktail().catch(handleError);
 
 const refreshBtn = document.querySelector('.refresh');
