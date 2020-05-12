@@ -8,29 +8,17 @@
   z-index: 5;
 }
 
-.loader-text {
-  color: white;
-  font-family: $main-title-font;
-  font-size: 36px;
-  position: absolute;
-  top: 65%;
-  left: 50%;
-  transform: translate(-50%, -65%);
-  text-shadow: rgba(0, 0, 0, 0.6) 4px 4px 8px, rgba(46, 64, 87, 1) -4px -4px 8px;
-}
-
 .hidden {
   display: none;
 }
 
 #glass-anim {
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -40%);
   height: 200px;
   width: 100px;
-  margin-top: -80px;
 }
 
 #glass {
@@ -139,4 +127,38 @@
   left: 20px;
   transform: rotate(-34deg);
   transform-origin: center bottom;
+}
+
+.loader-text {
+  color: white;
+  font-family: "Shadows Into Light", "cursive";
+  font-size: 36px;
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  transform: translate(-50%, -75%);
+  text-shadow: rgba(0, 0, 0, 0.6) 4px 4px 8px, #2e4057 -4px -4px 8px;
+  width: 90%;
+  text-align: center;
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+  .loader-text {
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -80%);
+  }
+}
+
+/* Landscape */
+@media only screen and (min-device-width: 320px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
+  .loader-text {
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -90%);
+
+    h4 {
+      margin: 0;
+    }
+  }
 }

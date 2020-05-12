@@ -124,15 +124,12 @@ body {
   font-weight: 400;
 }
 
-.cocktail-section {
-  margin-top: -20px;
-}
-
 @media screen and (min-width: 1360px) {
   .cocktail-section {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    margin-top: -20px;
   }
 
   .cocktail-description {
@@ -200,6 +197,5 @@ body {
 // fix FOUC
 html {
   visibility: visible;
-  background: linear-gradient(steelblue, beige);
   opacity: 1;
 }
