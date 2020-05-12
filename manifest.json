@@ -10,5 +10,11 @@
     "matches": ["http://*/*", "https://*/*"],
     "js": ["dist/bundle.js"],
     "run_at": "document_start"
-  }]
+  }],
+  "icons": {
+    "16": "src/assets/images/icon.png",
+    "32": "src/assets/images/icon.png",
+    "48": "src/assets/images/icon.png",
+    "128": "src/assets/images/icon.png"
+  }
 }
