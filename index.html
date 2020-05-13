@@ -118,10 +118,14 @@
           <div class="modal-body" id="modal-content">
             <div class="row">
               <div class="col-xs-4 text-center">
-                <form action="POST" class="review_form">
+                <form
+                  action="/reviews/create"
+                  method="post"
+                  class="review_form"
+                >
                   <label for="review_rating" id="modal-label"
-                    >Let's Rate it</label
-                  >
+                    >Let's Rate it!
+                  </label>
                   <select id="review_rating" name="review_rating">
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -129,6 +133,13 @@
                     <option value="4">4</option>
                     <option value="5">5</option>
                   </select>
+                  <input
+                    type="button"
+                    value="Create review"
+                    id="submit_form"
+                    name="review"
+                    class="btn-ghost"
+                  />
                 </form>
               </div>
             </div>

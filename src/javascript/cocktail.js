@@ -1,10 +1,19 @@
+import $ from 'jquery';
+
 const cocktailName = document.querySelector('.cocktail-name');
 const pictureDiv = document.querySelector('.cocktail-picture');
 const ingredientsDiv = document.querySelector('#ingredients-content');
 const recipeDiv = document.querySelector('#recipe-content');
 const loader = document.querySelector('.loader');
-const starsDiv = document.querySelector('.stars-wrapper');
 const baseEndpoint = 'https://fancy-cocktails2.herokuapp.com/api/v1/cocktails';
+const showPageDiv = document.querySelector('.show-page');
+const alert = `
+  <div class="alert alert-success fade show" id="flash-success" role="alert">
+    Review created with success
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+    </button>
+  </div>`;
 
 function handleError(err) {
   alert(` Sorry 🤷🏻‍♂️ Something went wrong`);
@@ -56,16 +65,33 @@ async function fetchCocktail() {
   recipeArray.map(step => step.trim());
   recipeArray.forEach(displayRecipe);
 
-  // reviews
-  const reviewsArr = data.reviews;
-  console.log(reviewsArr);
-
   // turn the loading anim off
   setTimeout(() => {
     loader.classList.add('hidden');
   }, 1200);
+  return id;
 }
 
-function displayReview() {}
+const cocktail = fetchCocktail().catch(handleError);
 
-export { fetchCocktail, handleError, displayReview };
+cocktail.then(result => {
+  const cocktailId = result;
+  const submitBtn = document.querySelector('#submit_form');
+  const rating = document.querySelector('#review_rating');
+  submitBtn.addEventListener('click', () => {
+    const review = { review: { rating: rating.value } };
+    console.log(review);
+    fetch(`${baseEndpoint}/${cocktailId}/reviews`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(review),
+    });
+    // did not found the way to close modal with es6
+    $('#rating-modal').modal('hide');
+    $('html, body').animate({ scrollTop: $('.show-page').offset().top }, 300);
+    showPageDiv.insertAdjacentHTML('afterbegin', alert);
+    setTimeout(() => {
+      $('.alert').alert('close');
+    }, 2000);
+  });
+});

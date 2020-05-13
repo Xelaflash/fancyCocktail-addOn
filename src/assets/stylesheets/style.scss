@@ -204,3 +204,14 @@ html {
   visibility: visible;
   opacity: 1;
 }
+
+
+.alert-success {
+  margin-bottom: 0;
+  color: $white;
+  font-size: 18px;
+  text-align: center;
+  background-color: $green;
+  border-color: $green;
+  border-radius: 0;
+}
