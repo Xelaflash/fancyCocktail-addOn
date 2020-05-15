@@ -15,6 +15,9 @@ const flashAlert = `
     </button>
   </div>`;
 
+const starWrapper = document.querySelector('.stars-wrapper');
+const ratingTxt = document.querySelector('#rating-txt');
+
 function handleError(err) {
   console.log(err);
 }
@@ -35,6 +38,20 @@ function displayRecipe(step, index) {
 </p>
   `;
   recipeDiv.insertAdjacentHTML('beforeend', recipe);
+}
+
+function drawBlankStars(numberOfStars) {
+  for (let i = 0; i < numberOfStars; i += 1) {
+    const el = `<span class="stars star-blank"></span>`;
+    starWrapper.insertAdjacentHTML('afterbegin', el);
+  }
+}
+
+function drawStarsColored(numberOfStars) {
+  for (let i = 0; i < numberOfStars; i += 1) {
+    const el = `<span class="stars star-colored"></span>`;
+    starWrapper.insertAdjacentHTML('afterbegin', el);
+  }
 }
 
 // call API cocktail SHOW
@@ -71,48 +88,12 @@ async function fetchCocktail() {
   recipeArray.map(step => step.trim());
   recipeArray.forEach(displayRecipe);
 
-  // turn the loading anim off
-  setTimeout(() => {
-    loader.classList.add('hidden');
-  }, 1200);
-  return data;
-}
-
-const cocktail = fetchCocktail().catch(handleError);
-
-// const { reviews } = data;
-// if (reviews.length > 0) {
-//   const ratingArr = reviews.map(review => review.rating);
-//   console.log(ratingArr);
-//   const averageRating = ratingArr.reduce((a, b) => a + b) / ratingArr.length;
-//   console.log(averageRating);
-// }
-
-const starWrapper = document.querySelector('.stars-wrapper');
-const ratingTxt = document.querySelector('#rating-txt');
-
-cocktail.then(result => {
   // display average rating
-  const { reviews } = result;
+  const { reviews } = data;
+  const ratingArr = reviews.length > 0 ? reviews.map(review => review.rating) : null;
+  const averageRating = ratingArr ? Math.round(ratingArr.reduce((a, b) => a + b) / ratingArr.length) : null;
+  const blankStars = 5 - averageRating;
   if (reviews.length > 0) {
-    const ratingArr = reviews.map(review => review.rating);
-    const averageRating = Math.round(ratingArr.reduce((a, b) => a + b) / ratingArr.length);
-    console.log(averageRating, ratingArr.reduce((a, b) => a + b) / ratingArr.length);
-    const blankStars = 5 - averageRating;
-
-    const drawBlankStars = function(numberOfStars) {
-      for (let i = 0; i < numberOfStars; i += 1) {
-        const el = `<span class="stars star-blank"></span>`;
-        starWrapper.insertAdjacentHTML('afterbegin', el);
-      }
-    };
-
-    const drawStarsColored = function(numberOfStars) {
-      for (let i = 0; i < numberOfStars; i += 1) {
-        const el = `<span class="stars star-colored"></span>`;
-        starWrapper.insertAdjacentHTML('afterbegin', el);
-      }
-    };
     drawBlankStars(blankStars);
     drawStarsColored(averageRating);
   } else {
@@ -127,6 +108,17 @@ cocktail.then(result => {
     ratingTxt.insertAdjacentHTML('afterbegin', nbOfReviewPluralize);
   }
 
+  // turn the loading anim off
+  setTimeout(() => {
+    loader.classList.add('hidden');
+  }, 1200);
+  return data;
+}
+
+// Load cocktail
+const cocktail = fetchCocktail().catch(handleError);
+
+cocktail.then(result => {
   // create new rating ==> POST to API
   const cocktailId = result.id;
   const submitBtn = document.querySelector('#submit_form');
