@@ -54,6 +54,34 @@ function drawStarsColored(numberOfStars) {
   }
 }
 
+function displayRating(reviews) {
+  const ratingArr = reviews.length > 0 ? reviews.map(review => review.rating) : null;
+  const averageRating = ratingArr ? Math.round(ratingArr.reduce((a, b) => a + b) / ratingArr.length) : null;
+  const blankStars = 5 - averageRating;
+  if (reviews.length > 0) {
+    drawBlankStars(blankStars);
+    drawStarsColored(averageRating);
+  } else {
+    const defaultText = `<p>Be the first to let a review</p>`;
+    ratingTxt.insertAdjacentHTML('afterbegin', defaultText);
+  }
+  if (reviews.length === 1) {
+    const nbOfReview = `<span>(${reviews.length} review)</span>`;
+    ratingTxt.insertAdjacentHTML('afterbegin', nbOfReview);
+  } else if (reviews.length > 1) {
+    const nbOfReviewPluralize = `<span>(${reviews.length} reviews)</span>`;
+    ratingTxt.insertAdjacentHTML('afterbegin', nbOfReviewPluralize);
+  }
+}
+
+const updateRating = async function(id) {
+  starWrapper.innerHTML = '';
+  const response = await fetch(`${baseEndpoint}/${id}`);
+  const data = await response.json();
+  const { reviews } = data;
+  displayRating(reviews);
+};
+
 // call API cocktail SHOW
 async function fetchCocktail() {
   // turn loading anim on
@@ -90,24 +118,7 @@ async function fetchCocktail() {
 
   // display average rating
   const { reviews } = data;
-  const ratingArr = reviews.length > 0 ? reviews.map(review => review.rating) : null;
-  const averageRating = ratingArr ? Math.round(ratingArr.reduce((a, b) => a + b) / ratingArr.length) : null;
-  const blankStars = 5 - averageRating;
-  if (reviews.length > 0) {
-    drawBlankStars(blankStars);
-    drawStarsColored(averageRating);
-  } else {
-    const defaultText = `<p>Be the first to let a review</p>`;
-    ratingTxt.insertAdjacentHTML('afterbegin', defaultText);
-  }
-  if (reviews.length === 1) {
-    const nbOfReview = `<span>(${reviews.length} review)</span>`;
-    ratingTxt.insertAdjacentHTML('afterbegin', nbOfReview);
-  } else if (reviews.length > 1) {
-    const nbOfReviewPluralize = `<span>(${reviews.length} reviews)</span>`;
-    ratingTxt.insertAdjacentHTML('afterbegin', nbOfReviewPluralize);
-  }
-
+  displayRating(reviews);
   // turn the loading anim off
   setTimeout(() => {
     loader.classList.add('hidden');
@@ -117,7 +128,6 @@ async function fetchCocktail() {
 
 // Load cocktail
 const cocktail = fetchCocktail().catch(handleError);
-
 cocktail.then(result => {
   // create new rating ==> POST to API
   const cocktailId = result.id;
@@ -130,6 +140,11 @@ cocktail.then(result => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(review),
     });
+    // re-paint rating section after POST
+    updateRating(cocktailId);
+    if (ratingTxt) {
+      ratingTxt.textContent = '';
+    }
     // did not found the way to close modal with es6
     $('#rating-modal').modal('hide');
     $('html, body').animate({ scrollTop: $('.show-page').offset().top }, 300);
