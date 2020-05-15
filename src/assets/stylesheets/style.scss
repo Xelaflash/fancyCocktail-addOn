@@ -50,6 +50,14 @@ body {
   border-top: 1px solid $charcoal;
 }
 
+// refresh btn override user agent default style
+#refresh-btn {
+  background: none;
+  margin: 0;
+  border: none;
+  padding: 0;
+}
+
 .cocktail-picture {
   text-align: center;
 }
