@@ -7,7 +7,7 @@ const recipeDiv = document.querySelector('#recipe-content');
 const loader = document.querySelector('.loader');
 const baseEndpoint = 'https://fancy-cocktails2.herokuapp.com/api/v1/cocktails';
 const showPageDiv = document.querySelector('.show-page');
-const alert = `
+const flashAlert = `
   <div class="alert alert-success fade show" id="flash-success" role="alert">
     Review created with success
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -16,7 +16,7 @@ const alert = `
   </div>`;
 
 function handleError(err) {
-  alert(` Sorry 🤷🏻‍♂️ Something went wrong`);
+  console.log(err);
 }
 
 async function getCocktailId() {
@@ -44,11 +44,15 @@ async function fetchCocktail() {
   const id = await getCocktailId();
   const response = await fetch(`${baseEndpoint}/${id}`);
   const data = await response.json();
+
+  // display picture
   cocktailName.textContent = data.name;
   const photo = `
   <img src="${baseEndpoint}/${id}/photo" width="350" alt="Cocktail picture">
   `;
   pictureDiv.insertAdjacentHTML('beforeend', photo);
+
+  // display doses
   data.doses.forEach(ingredient => {
     const dose = `
     <p class="step">
@@ -57,6 +61,8 @@ async function fetchCocktail() {
     `;
     ingredientsDiv.insertAdjacentHTML('beforeend', dose);
   });
+
+  // display recipe
   const recipeStr = data.recipe;
   const recipeArray = recipeStr
     .replace(/[\n\r]+/g, '')
@@ -69,18 +75,64 @@ async function fetchCocktail() {
   setTimeout(() => {
     loader.classList.add('hidden');
   }, 1200);
-  return id;
+  return data;
 }
 
 const cocktail = fetchCocktail().catch(handleError);
 
+// const { reviews } = data;
+// if (reviews.length > 0) {
+//   const ratingArr = reviews.map(review => review.rating);
+//   console.log(ratingArr);
+//   const averageRating = ratingArr.reduce((a, b) => a + b) / ratingArr.length;
+//   console.log(averageRating);
+// }
+
+const starWrapper = document.querySelector('.stars-wrapper');
+const ratingTxt = document.querySelector('#rating-txt');
+
 cocktail.then(result => {
-  const cocktailId = result;
+  // display average rating
+  const { reviews } = result;
+  if (reviews.length > 0) {
+    const ratingArr = reviews.map(review => review.rating);
+    const averageRating = Math.round(ratingArr.reduce((a, b) => a + b) / ratingArr.length);
+    console.log(averageRating, ratingArr.reduce((a, b) => a + b) / ratingArr.length);
+    const blankStars = 5 - averageRating;
+
+    const drawBlankStars = function(numberOfStars) {
+      for (let i = 0; i < numberOfStars; i += 1) {
+        const el = `<span class="stars star-blank"></span>`;
+        starWrapper.insertAdjacentHTML('afterbegin', el);
+      }
+    };
+
+    const drawStarsColored = function(numberOfStars) {
+      for (let i = 0; i < numberOfStars; i += 1) {
+        const el = `<span class="stars star-colored"></span>`;
+        starWrapper.insertAdjacentHTML('afterbegin', el);
+      }
+    };
+    drawBlankStars(blankStars);
+    drawStarsColored(averageRating);
+  } else {
+    const defaultText = `<p>Be the first to let a review</p>`;
+    ratingTxt.insertAdjacentHTML('afterbegin', defaultText);
+  }
+  if (reviews.length === 1) {
+    const nbOfReview = `<span>(${reviews.length} review)</span>`;
+    ratingTxt.insertAdjacentHTML('afterbegin', nbOfReview);
+  } else if (reviews.length > 1) {
+    const nbOfReviewPluralize = `<span>(${reviews.length} reviews)</span>`;
+    ratingTxt.insertAdjacentHTML('afterbegin', nbOfReviewPluralize);
+  }
+
+  // create new rating ==> POST to API
+  const cocktailId = result.id;
   const submitBtn = document.querySelector('#submit_form');
   const rating = document.querySelector('#review_rating');
   submitBtn.addEventListener('click', () => {
     const review = { review: { rating: rating.value } };
-    console.log(review);
     fetch(`${baseEndpoint}/${cocktailId}/reviews`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -89,7 +141,7 @@ cocktail.then(result => {
     // did not found the way to close modal with es6
     $('#rating-modal').modal('hide');
     $('html, body').animate({ scrollTop: $('.show-page').offset().top }, 300);
-    showPageDiv.insertAdjacentHTML('afterbegin', alert);
+    showPageDiv.insertAdjacentHTML('afterbegin', flashAlert);
     setTimeout(() => {
       $('.alert').alert('close');
     }, 2000);

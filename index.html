@@ -1,153 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>New tab by Fancy Cocktail</title>
-    <link rel="icon" type="image/png" href="/src/assets/images/icon.png" />
-    <style>
-      html {
-        visibility: hidden;
-        opacity: 0;
-      }
-    </style>
-  </head>
 
-  <body>
-    <div class="overlay loader hidden">
-      <div id="glass-anim">
-        <div id="lemon"></div>
-        <div id="straw"></div>
-        <div id="glass">
-          <div id="cubes">
-            <div class="cube"></div>
-            <div class="cube"></div>
-            <div class="cube"></div>
-          </div>
-          <div id="drink"></div>
-          <span id="counter"></span>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>New tab by Fancy Cocktail</title>
+  <link rel="icon" type="image/png" href="/src/assets/images/icon.png" />
+  <style>
+    html {
+      visibility: hidden;
+      opacity: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="overlay loader hidden">
+    <div id="glass-anim">
+      <div id="lemon"></div>
+      <div id="straw"></div>
+      <div id="glass">
+        <div id="cubes">
+          <div class="cube"></div>
+          <div class="cube"></div>
+          <div class="cube"></div>
         </div>
-      </div>
-      <div class="loader-text-wrapper">
-        <h4 id="anim-text">Bartender is pouring your cocktail</h4>
+        <div id="drink"></div>
+        <span id="counter"></span>
       </div>
     </div>
-    <div class="show-page">
-      <div class="cocktail-show-banner">
-        <h2>Fancy Cocktail</h2>
-        <div class="sep"></div>
-        <h1 class="cocktail-name"></h1>
-      </div>
-      <div class="refresh">
-        <svg
-          version="1.1"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          x="0px"
-          y="0px"
-          width="60px"
-          height="60px"
-          viewBox="0 0 40 40"
-          enable-background="new 0 0 40 40"
-          xml:space="preserve"
-        >
-          <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            d="M12.011,20c0-0.002,0-0.003,0-0.005c0-4.421,3.578-8.005,7.991-8.005 c2.683,0,5.051,1.329,6.5,3.361l1.26-1.644c-1.834-2.254-4.627-3.696-7.76-3.696c-5.519,0-9.994,4.471-10.001,9.989H8.013 l3.018,4.013L13.987,20H12.011z M32,20l-2.969-3.985L26,20h1.992c-0.003,4.419-3.579,8.001-7.99,8.001 c-2.716,0-5.111-1.36-6.555-3.435l-1.284,1.644c1.832,2.314,4.66,3.803,7.84,3.803c5.524,0,10.001-4.478,10.001-10.001 c0-0.004-0.001-0.008-0.001-0.012H32z"
-          ></path>
-        </svg>
-      </div>
-      <div class="cocktail-section container">
-        <div class="cocktail-picture"></div>
-        <div class="cocktail-description">
-          <div class="cocktail-description-card" id="ingredients-card">
-            <h2>Ingredients</h2>
-            <div class="card-sep"></div>
-            <div class="cocktail-card-content" id="ingredients-content"></div>
-          </div>
-          <div class="cocktail-description-card" id="recipe-card">
-            <h2>Recipe</h2>
-            <div class="card-sep"></div>
-            <div class="cocktail-card-content" id="recipe-content"></div>
-          </div>
+    <div class="loader-text-wrapper">
+      <h4 id="anim-text">Bartender is pouring your cocktail</h4>
+    </div>
+  </div>
+  <div class="show-page">
+    <div class="cocktail-show-banner">
+      <h2>Fancy Cocktail</h2>
+      <div class="sep"></div>
+      <h1 class="cocktail-name"></h1>
+    </div>
+    <div class="refresh">
+      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+        width="60px" height="60px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+          d="M12.011,20c0-0.002,0-0.003,0-0.005c0-4.421,3.578-8.005,7.991-8.005 c2.683,0,5.051,1.329,6.5,3.361l1.26-1.644c-1.834-2.254-4.627-3.696-7.76-3.696c-5.519,0-9.994,4.471-10.001,9.989H8.013 l3.018,4.013L13.987,20H12.011z M32,20l-2.969-3.985L26,20h1.992c-0.003,4.419-3.579,8.001-7.99,8.001 c-2.716,0-5.111-1.36-6.555-3.435l-1.284,1.644c1.832,2.314,4.66,3.803,7.84,3.803c5.524,0,10.001-4.478,10.001-10.001 c0-0.004-0.001-0.008-0.001-0.012H32z">
+        </path>
+      </svg>
+    </div>
+    <div class="cocktail-section container">
+      <div class="cocktail-picture"></div>
+      <div class="cocktail-description">
+        <div class="cocktail-description-card" id="ingredients-card">
+          <h2>Ingredients</h2>
+          <div class="card-sep"></div>
+          <div class="cocktail-card-content" id="ingredients-content"></div>
         </div>
-      </div>
-      <div class="rating-section container">
-        <div class="cocktail-rating-container">
-          <h4 id="rating-title">Our community rated this cocktail</h4>
-          <div class="cocktail-rating">
-            <div class="stars-wrapper"></div>
-            <div id="rating-txt"></div>
-          </div>
-          <div class="rate-btn">
-            <button
-              type="button"
-              class="btn-ghost"
-              data-toggle="modal"
-              data-target="#rating-modal"
-            >
-              Rate cocktail
-            </button>
-          </div>
+        <div class="cocktail-description-card" id="recipe-card">
+          <h2>Recipe</h2>
+          <div class="card-sep"></div>
+          <div class="cocktail-card-content" id="recipe-content"></div>
         </div>
       </div>
     </div>
-    <!-- start modal -->
-    <div
-      class="modal fade"
-      id="rating-modal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="Rate the cocktail"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content container">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modal-title">Enjoy this cocktail?</h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body" id="modal-content">
-            <div class="row">
-              <div class="col-xs-4 text-center">
-                <form
-                  action="/reviews/create"
-                  method="post"
-                  class="review_form"
-                >
-                  <label for="review_rating" id="modal-label"
-                    >Let's Rate it!
-                  </label>
-                  <select id="review_rating" name="review_rating">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                  </select>
-                  <input
-                    type="button"
-                    value="Create review"
-                    id="submit_form"
-                    name="review"
-                    class="btn-ghost"
-                  />
-                </form>
-              </div>
+    <div class="rating-section container">
+      <div class="cocktail-rating-container">
+        <h4 id="rating-title">Our community rated this cocktail:</h4>
+        <div class="cocktail-rating">
+          <div class="stars-wrapper"></div>
+          <div id="rating-txt"></div>
+        </div>
+        <div class="rate-btn">
+          <button type="button" class="btn-ghost" data-toggle="modal" data-target="#rating-modal">
+            Rate cocktail
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- start modal -->
+  <div class="modal fade" id="rating-modal" tabindex="-1" role="dialog" aria-labelledby="Rate the cocktail"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content container">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal-title">Enjoy this cocktail?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="modal-content">
+          <div class="row">
+            <div class="col-xs-4 text-center">
+              <form action="/reviews/create" method="post" class="review_form">
+                <label for="review_rating" id="modal-label">Let's Rate it!
+                </label>
+                <select id="review_rating" name="review_rating">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
+                <input type="button" value="Create review" id="submit_form" name="review" class="btn-ghost" />
+              </form>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <!-- end modal -->
-    <script src="dist/bundle.js"></script>
-  </body>
+  </div>
+  <!-- end modal -->
+  <script src="dist/bundle.js"></script>
+</body>
+
 </html>

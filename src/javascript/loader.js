@@ -3,6 +3,10 @@ import $ from 'jquery';
 let worker = null;
 let loaded = 0;
 
+function stopLoading() {
+  clearInterval(worker);
+}
+
 function increment() {
   $('#counter').html(`${loaded}%`);
   $('#drink').css('top', `${100 - loaded * 0.9}%`);
@@ -14,7 +18,7 @@ function increment() {
     $('#straw').fadeIn(300);
     loaded = 0;
     stopLoading();
-  } else loaded++;
+  } else loaded += 1;
 }
 
 function startLoading() {
@@ -22,9 +26,6 @@ function startLoading() {
   $('#straw').hide();
   $('#cubes div').hide();
   worker = setInterval(increment, 10);
-}
-function stopLoading() {
-  clearInterval(worker);
 }
 
 export { startLoading };
