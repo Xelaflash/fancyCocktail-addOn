@@ -12,9 +12,9 @@
     "run_at": "document_start"
   }],
   "icons": {
-    "16": "src/assets/images/icon.png",
-    "32": "src/assets/images/icon.png",
-    "48": "src/assets/images/icon.png",
-    "128": "src/assets/images/icon.png"
+    "16": "src/assets/images/cocktail.png",
+    "32": "src/assets/images/cocktail.png",
+    "48": "src/assets/images/cocktail.png",
+    "128": "src/assets/images/cocktail.png"
   }
 }
